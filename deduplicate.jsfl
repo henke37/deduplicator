@@ -142,6 +142,10 @@ function hashFrame(frame) {
 		hash=h(hash,hashString(frame.labelType));
 		hash=h(hash,hashString(frame.name));
 	}
+	if(frame.soundLibraryItem) {
+		hash=h(hash,hashString(frame.soundLibraryItem.name));
+		hash=h(hash,hashString(frame.soundSync))
+	}
 	return hash+1;
 }
 
