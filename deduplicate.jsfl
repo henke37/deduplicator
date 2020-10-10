@@ -135,6 +135,13 @@ function hashFrame(frame) {
 		var hash2=hashElement(elm);
 		hash = h(hash,hash2);
 	}
+	if(frame.actionScript!="") {
+		hash=h(hash,hashString(frame.actionScript));
+	}
+	if(frame.labelType!="none") {
+		hash=h(hash,hashString(frame.labelType));
+		hash=h(hash,hashString(frame.name));
+	}
 	return hash+1;
 }
 
@@ -338,7 +345,7 @@ function hashString(str) {
 	for(var i=0;i<str.length;++i) {
 		var c=str.charCodeAt(i);
 		hash *= c;
-		hash += (c*c) % 483173;
+		hash += (c*c) % 4833;
 		hash -= i*24;
 		hash %= 78517145;
 	}
