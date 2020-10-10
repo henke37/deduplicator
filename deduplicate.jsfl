@@ -146,6 +146,15 @@ function hashFrame(frame) {
 		hash=h(hash,hashString(frame.soundLibraryItem.name));
 		hash=h(hash,hashString(frame.soundSync))
 	}
+	if(frame.tweenType!="none") {
+		hash+=(frame.motionTweenScale?1:0);
+		hash=h(hash, hashString(frame.tweenType));
+		hash+=(frame.motionTweenOrientToPath?1:0);
+		hash=h(hash, hashString(frame.motionTweenRotate));
+		hash+=(frame.motionTweenSnap?1:0);
+		hash=h(hash, frame.motionTweenRotateTimes);
+		hash+=(frame.motionTweenSync?1:0);
+	}
 	return hash+1;
 }
 
