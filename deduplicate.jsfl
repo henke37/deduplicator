@@ -357,12 +357,9 @@ function hashString(str) {
 	var hash=0;
 	for(var i=0;i<str.length;++i) {
 		var c=str.charCodeAt(i);
-		hash *= c;
-		hash += (c*c) % 4833;
-		hash -= i*24;
-		hash %= 78517145;
+		hash = (1000003 * hash) ^ c;
 	}
-	return hash;
+	return hash ^ str.length;
 }
 
 function hashMatrix(m) {
