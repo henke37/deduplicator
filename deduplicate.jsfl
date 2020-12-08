@@ -264,6 +264,10 @@ function hashShape(elm) {
 		hash = h(hash, hashFill(fill));
 	}
 	
+	for each(var groupMember in elm.members) {
+		hash = h(hash, hashElement(groupMember));
+	}
+	
 	return hash+1;
 }
 
