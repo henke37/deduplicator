@@ -1,8 +1,10 @@
 ﻿var lib=document.library;
 var cnt=0;
 var uniqCnt=0;
+var swaps=0;
 
 var hashmap=new Object();
+var replacements={};
 
 try {
 
@@ -33,9 +35,7 @@ deduplicate(hashmap);
 	throw err;
 }
 
-function deduplicate(hashmap) {
-	var replacements={};
-
+function deduplicate() {
 	for(var hash in hashmap) {
 		var items=hashmap[hash];
 		
@@ -46,32 +46,14 @@ function deduplicate(hashmap) {
 			fl.trace(items[j].name+" -> "+items[0].name);
 		}
 	}
-
-	var swaps=0;
-
+	
+	for each(var timeline in document.timelines) {
+		swapItemsInTimeline(timeline);
+	}
+	
 	for each(var item in document.library.items) {
 		if(item.itemType!="movie clip" && item.itemType!="graphic") continue;
-		var timeline=item.timeline;
-		for each(var layer in timeline.layers) {
-			var frames=layer.frames;
-			var n=frames.length;
-			
-			for(var i=0;i<n;++i) {
-				var frame=frames[i];
-				if(i!=frame.startFrame) continue;
-				
-				for(var elmnIndex=0;elmnIndex<frame.elements.length;++elmnIndex) {
-					var elm=frame.elements[elmnIndex];
-					
-					if(elm.elementType!="instance") continue;
-					
-					if(elm.libraryItem.name in replacements) {
-						elm.libraryItem=replacements[elm.libraryItem.name];
-						swaps++;
-					}
-				}
-			}
-		}
+		swapItemsInTimeline(item.timeline);
 	}
 
 	fl.trace("Did "+swaps+" swaps");
@@ -86,6 +68,29 @@ function deduplicate(hashmap) {
 
 	fl.trace("Deleted "+dels+" duplicate symbols");
 
+}
+
+function swapItemsInTimeline(timeline) {
+	for each(var layer in timeline.layers) {
+		var frames=layer.frames;
+		var n=frames.length;
+		
+		for(var i=0;i<n;++i) {
+			var frame=frames[i];
+			if(i!=frame.startFrame) continue;
+			
+			for(var elmnIndex=0;elmnIndex<frame.elements.length;++elmnIndex) {
+				var elm=frame.elements[elmnIndex];
+				
+				if(elm.elementType!="instance") continue;
+				
+				if(elm.libraryItem.name in replacements) {
+					elm.libraryItem=replacements[elm.libraryItem.name];
+					swaps++;
+				}
+			}
+		}
+	}
 }
 
 function symbolComparator(x,y) {
