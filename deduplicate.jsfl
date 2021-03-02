@@ -52,7 +52,7 @@ function deduplicate() {
 	}
 	
 	for each(var item in document.library.items) {
-		if(item.itemType!="movie clip" && item.itemType!="graphic") continue;
+		if(item.itemType!="movie clip" && item.itemType!="graphic" && item.itemType!="button") continue;
 		swapItemsInTimeline(item.timeline);
 	}
 
