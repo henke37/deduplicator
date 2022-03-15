@@ -101,8 +101,13 @@ function symbolComparator(x,y) {
 	if(xSlashes>ySlashes) return -1;
 	if(xSlashes<ySlashes) return 1;
 	
-	var badXName=x.name.indexOf("Symbol")!=-1;
-	var badYName=y.name.indexOf("Symbol")!=-1;
+	var badXName=x.name.indexOf("Tween")!=-1;
+	var badYName=y.name.indexOf("Tween")!=-1;
+	if(badXName && !badYName) return 1;
+	if(!badXName && badYName) return -1;
+	
+	badXName=x.name.indexOf("Symbol")!=-1;
+	badYName=y.name.indexOf("Symbol")!=-1;
 	if(badXName && !badYName) return 1;
 	if(!badXName && badYName) return -1;
 	
