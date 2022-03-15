@@ -99,13 +99,6 @@ function symbolComparator(x,y) {
 	if(badXName && !badYName) return 1;
 	if(!badXName && badYName) return -1;
 	
-	var xSlashes=x.name.match(/\//g);
-	xSlashes=xSlashes?xSlashes.length:0;
-	var ySlashes=y.name.match(/\//g);
-	ySlashes=ySlashes?ySlashes.length:0;
-	if(xSlashes>ySlashes) return -1;
-	if(xSlashes<ySlashes) return 1;
-	
 	badXName=x.name.indexOf("Tween")!=-1;
 	badYName=y.name.indexOf("Tween")!=-1;
 	if(badXName && !badYName) return 1;
@@ -115,6 +108,13 @@ function symbolComparator(x,y) {
 	badYName=y.name.indexOf("Symbol")!=-1;
 	if(badXName && !badYName) return 1;
 	if(!badXName && badYName) return -1;
+	
+	var xSlashes=x.name.match(/\//g);
+	xSlashes=xSlashes?xSlashes.length:0;
+	var ySlashes=y.name.match(/\//g);
+	ySlashes=ySlashes?ySlashes.length:0;
+	if(xSlashes>ySlashes) return -1;
+	if(xSlashes<ySlashes) return 1;
 	
 	return 0;
 }
