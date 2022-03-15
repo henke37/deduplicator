@@ -94,6 +94,11 @@ function swapItemsInTimeline(timeline) {
 }
 
 function symbolComparator(x,y) {
+	var badXName=x.name.indexOf("Duplicate Items Folder")!=-1;
+	var badYName=y.name.indexOf("Duplicate Items Folder")!=-1;
+	if(badXName && !badYName) return 1;
+	if(!badXName && badYName) return -1;
+	
 	var xSlashes=x.name.match(/\//g);
 	xSlashes=xSlashes?xSlashes.length:0;
 	var ySlashes=y.name.match(/\//g);
@@ -101,8 +106,8 @@ function symbolComparator(x,y) {
 	if(xSlashes>ySlashes) return -1;
 	if(xSlashes<ySlashes) return 1;
 	
-	var badXName=x.name.indexOf("Tween")!=-1;
-	var badYName=y.name.indexOf("Tween")!=-1;
+	badXName=x.name.indexOf("Tween")!=-1;
+	badYName=y.name.indexOf("Tween")!=-1;
 	if(badXName && !badYName) return 1;
 	if(!badXName && badYName) return -1;
 	
