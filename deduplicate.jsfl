@@ -109,6 +109,11 @@ function symbolComparator(x,y) {
 	if(badXName && !badYName) return 1;
 	if(!badXName && badYName) return -1;
 	
+	badXName=x.name.indexOf("copy")!=-1;
+	badYName=y.name.indexOf("copy")!=-1;
+	if(badXName && !badYName) return 1;
+	if(!badXName && badYName) return -1;
+	
 	var xSlashes=x.name.match(/\//g);
 	xSlashes=xSlashes?xSlashes.length:0;
 	var ySlashes=y.name.match(/\//g);
