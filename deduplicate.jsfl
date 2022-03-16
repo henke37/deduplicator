@@ -18,6 +18,10 @@ for each(var item in lib.items) {
 	var hash=hashTimeline(tl);
 	//fl.trace(item.name +":"+hash);
 	
+	if(item.linkageExportForAS) {
+		hash=h(hash, hashString(item.linkageClassName));
+	}
+	
 	if(hash in hashmap) {
 		hashmap[hash].push(item);
 	} else {
