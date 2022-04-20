@@ -1,7 +1,7 @@
 ﻿function hashSymbol(symb, xOff, yOff) {
 	var hash=0;
 	if(symb.itemType=="graphic" || symb.itemType=="movie clip" || symb.itemType=="button") {
-		hash=hashTimeline(symb.timeline);
+		hash=hashTimeline(symb.timeline, xOff, yOff);
 	}
 	
 	if(symb.linkageExportForAS) {
