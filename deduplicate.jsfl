@@ -17,12 +17,8 @@ for each(var item in lib.items) {
 	//if(tl.frameCount>1) continue;
 	cnt++;
 	
-	var hash=hashTimeline(tl,0,0);
+	var hash=hashSymbol(item,0,0);
 	fl.trace(item.name +":"+hash);
-	
-	if(item.linkageExportForAS) {
-		hash=h(hash, hashString(item.linkageClassName));
-	}
 	
 	if(hash in hashmap) {
 		hashmap[hash].push(item);
