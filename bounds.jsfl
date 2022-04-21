@@ -28,7 +28,7 @@
 		if(elm.top<minY) minY=elm.top;
 		if(bottom>maxY) maxY=bottom;
 	
-		fl.trace(elm.left.toFixed(2)+","+right.toFixed(2)+","+elm.top.toFixed(2)+","+bottom.toFixed(2)+" "+elm.isGroup+" "+elm.isDrawingObject);
+		//fl.trace(elm.left.toFixed(2)+","+right.toFixed(2)+","+elm.top.toFixed(2)+","+bottom.toFixed(2)+" "+elm.isGroup+" "+elm.isDrawingObject);
 	}
 
 	if(!isFinite(minX)) return { minX: 0, minY: 0, maxX: 0, maxY: 0 };
