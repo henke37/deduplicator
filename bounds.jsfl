@@ -31,5 +31,7 @@
 		fl.trace(elm.left.toFixed(2)+","+right.toFixed(2)+","+elm.top.toFixed(2)+","+bottom.toFixed(2)+" "+elm.isGroup+" "+elm.isDrawingObject);
 	}
 
+	if(!isFinite(minX)) return { minX: 0, minY: 0, maxX: 0, maxY: 0 };
+
 	return { minX: minX, minY: minY, maxX: maxX, maxY: maxY };
 }
