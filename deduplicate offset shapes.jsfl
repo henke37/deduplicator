@@ -98,14 +98,27 @@ function swapItemsInTimeline(timeline) {
 					var xDiff=replacement.oldItem.bounds.minX-replacement.newItem.bounds.minX;
 					var yDiff=replacement.oldItem.bounds.minY-replacement.newItem.bounds.minY;
 					
-					elm.x+=xDiff;
-					elm.y+=yDiff;
+					var mi=invertMatrix(elm.matrix);
+					
+					elm.x+=mi.a*xDiff+mi.b*yDiff;
+					elm.y+=mi.c*yDiff+mi.d*xDiff;
 					elm.libraryItem=replacement.newItem.symb;
 					
 					swaps++;
 				}
 			}
 		}
+	}
+}
+
+function invertMatrix(m) {
+	var det=m.a*m.d-m.b*m.c;
+	
+	return {
+		a:  m.d/det,
+		b: -m.b/det,
+		c: -m.c/det,
+		d:  m.a/det
 	}
 }
 
