@@ -1,8 +1,8 @@
 ﻿function elementsBounds(elements) {
-	var minX=0;
-	var maxX=0;
-	var minY=0;
-	var maxY=0;
+	var minX=Infinity;
+	var maxX=-Infinity;
+	var minY=Infinity;
+	var maxY=-Infinity;
 	
 	for each(var elm in elements) {
 		if(elm.elementType=="instance") {
@@ -28,7 +28,7 @@
 		if(elm.top<minY) minY=elm.top;
 		if(bottom>maxY) maxY=bottom;
 	
-		//fl.trace(elm.left.toFixed(2)+","+right.toFixed(2)+","+elm.top.toFixed(2)+","+bottom.toFixed(2)+" "+elm.isGroup+" "+elm.isDrawingObject);
+		fl.trace(elm.left.toFixed(2)+","+right.toFixed(2)+","+elm.top.toFixed(2)+","+bottom.toFixed(2)+" "+elm.isGroup+" "+elm.isDrawingObject);
 	}
 
 	return { minX: minX, minY: minY, maxX: maxX, maxY: maxY };
