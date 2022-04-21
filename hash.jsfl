@@ -154,8 +154,8 @@ function hashShape(elm, xOff, yOff) {
 	var hash=0;
 	
 	for each(var vert in elm.vertices) {
-		hash = h(hash,vert.x-xOff);
-		hash = h(hash,vert.y-yOff);
+		hash = h(hash,roundD(vert.x-xOff,1000));
+		hash = h(hash,roundD(vert.y-yOff,1000));
 	}
 	
 	for each(var edge in elm.edges) {
@@ -174,6 +174,10 @@ function hashShape(elm, xOff, yOff) {
 	}
 	
 	return hash+1;
+}
+
+function roundD(x, scale) {
+	return Math.round(x*scale+0.0000001)/scale;
 }
 
 function hashStroke(stroke) {
