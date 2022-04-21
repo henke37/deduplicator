@@ -51,6 +51,7 @@ hashSymbols();
 
 findReplacements();
 
+deduplicate();
 
 function deduplicate() {
 	
@@ -97,8 +98,8 @@ function swapItemsInTimeline(timeline) {
 					var xDiff=replacement.oldItem.bounds.minX-replacement.newItem.bounds.minX;
 					var yDiff=replacement.oldItem.bounds.minY-replacement.newItem.bounds.minY;
 					
-					elm.x-=xDiff;
-					elm.y-=yDiff;
+					elm.x+=xDiff;
+					elm.y+=yDiff;
 					elm.libraryItem=replacement.newItem.symb;
 					
 					swaps++;
