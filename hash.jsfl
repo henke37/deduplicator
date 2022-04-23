@@ -71,18 +71,18 @@ function hashElement(elm, xOff, yOff) {
 		
 	switch(elm.elementType) {
 		case "shape":
-			hash =h(hash, hashShape(elm, xOff, yOff));
+			hash += hashShape(elm, xOff, yOff);
 		break;
 		case "instance": 
-			hash =h(hash, hashString(elm.libraryItem.name));
+			hash += hashString(elm.libraryItem.name);
 			switch(elm.instanceType) {
 				case "symbol":
-					hash =h(hash,hashSymbolInstance(elm, xOff, yOff));
+					hash += hashSymbolInstance(elm, xOff, yOff);
 				break;
 			}
 		break;
 		case "text":
-			hash =h(hash, hashText(elm));
+			hash += hashText(elm);
 		break;
 	}
 	
