@@ -101,7 +101,7 @@ function swapItemsInTimeline(timeline) {
 					var mi=invertMatrix(elm.matrix);
 					
 					elm.x+=mi.a*xDiff+mi.b*yDiff;
-					elm.y+=mi.c*yDiff+mi.d*xDiff;
+					elm.y+=mi.c*xDiff+mi.d*yDiff;
 					elm.libraryItem=replacement.newItem.symb;
 					
 					swaps++;
